@@ -1,0 +1,17 @@
+{
+  "name": "webrefapp-api",
+  "version": "1.0.0",
+  "description": "WebReference App API Layer component",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node .src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/datastore": "^7.5.1",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  }
+}
