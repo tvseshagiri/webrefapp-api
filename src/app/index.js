@@ -16,6 +16,10 @@ app.get('/', (req, res) => {
     res.json({ 'message': 'ok' });
 })
 
+//setup app specific routers
+
+app.use('/api/bookmarks', bookmarksRoute)
+
 // Error handling
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
@@ -26,8 +30,6 @@ app.use((err, req, res, next) => {
 });
 
 
-//setup app specific routers
 
-app.use('/api/bookmarks', bookmarksRoute)
 
 module.exports = app
