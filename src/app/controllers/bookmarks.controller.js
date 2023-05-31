@@ -15,11 +15,12 @@ async function saveBookmark(req, res, next) {
         const bookmark = {
             title: req.body.title,
             description: req.body.description,
-            keywords: req.body.keywords ? req.body.keywords.split(',') : ""
+            keywords: req.body.keywords,
+            refUrl: req.body.refUrl
         }
         res.json(await bookmarksService.saveBookmark(bookmark));
     } catch (err) {
-        console.error(`Error while getting bookmarks`, err.message);
+        console.error(`Error while creating bookmarks`, err.message);
         next(err)
     }
 
@@ -32,11 +33,12 @@ async function updateBookmark(req, res, next) {
             id: req.params.id,
             title: req.body.title,
             description: req.body.description,
-            keywords: req.body.keywords.split(',')
+            keywords: req.body.keywords,
+            refUrl: req.body.refUrl
         }
-        res.json(await bookmarksService.saveBookmark(bookmark));
+        res.json(await bookmarksService.updateBookmark(bookmark));
     } catch (err) {
-        console.error(`Error while getting bookmarks`, err.message);
+        console.error(`Error while updating bookmarks`, err.message);
         next(err)
     }
 
@@ -48,7 +50,7 @@ async function getBookmarkById(req, res, next) {
         res.json(await bookmarksService.getBookmarkById(id))
 
     } catch (err) {
-        console.error(`Error while getting bookmarks`, err.message);
+        console.error(`Error while getting bookmarks by ID`, err.message);
         next(err)
     }
 }
@@ -59,7 +61,7 @@ async function deleteBookmark(req, res, next) {
         res.json(await bookmarksService.deleteBookmark(id))
 
     } catch (err) {
-        console.error(`Error while getting bookmarks`, err.message);
+        console.error(`Error while deleting bookmark`, err.message);
         next(err)
     }
 }

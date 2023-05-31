@@ -7,7 +7,7 @@ const bookmarksController = require('../controllers/bookmarks.controller')
 router.get('/', bookmarksController.getAllBookmarks)
 router.get('/:id', bookmarksController.getBookmarkById)
 router.delete('/:id', bookmarksController.deleteBookmark)
-router.put('/:id', bookmarksController.deleteBookmark)
+router.put('/:id', bookmarksController.updateBookmark)
 router.post('/', bookmarksController.saveBookmark)
 
 module.exports = router;
