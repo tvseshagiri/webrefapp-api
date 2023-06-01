@@ -12,4 +12,4 @@ steps:
 images:
 - gcr.io/irigahsesvt/tvseshagiri-webrefapp-image
 options:
-      logging: NONE
+      logging: CLOUD_LOGGING_ONLY
