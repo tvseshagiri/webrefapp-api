@@ -1,0 +1,13 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/irigahsesvt/tvseshagiri-webrefapp-image', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/irigahsesvt/tvseshagiri-webrefapp-image']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'api/webrefs', '--image', 'gcr.io/irigahsesvt/tvseshagiri-webrefapp-image', '--region', 'us-central1']
+images:
+- gcr.io/irigahsesvt/tvseshagiri-webrefapp-image
