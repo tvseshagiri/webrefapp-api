@@ -14,9 +14,9 @@ async function saveBookmark(req, res, next) {
     try {
         const bookmark = {
             title: req.body.title,
-            description: req.body.description,
+            description: req.body.desc,
             keywords: req.body.keywords,
-            refUrl: req.body.refUrl
+            refUrl: req.body.siteUrl
         }
         res.json(await bookmarksService.saveBookmark(bookmark));
     } catch (err) {
@@ -32,9 +32,9 @@ async function updateBookmark(req, res, next) {
         const bookmark = {
             id: req.params.id,
             title: req.body.title,
-            description: req.body.description,
+            description: req.body.desc,
             keywords: req.body.keywords,
-            refUrl: req.body.refUrl
+            refUrl: req.body.siteUrl
         }
         res.json(await bookmarksService.updateBookmark(bookmark));
     } catch (err) {
