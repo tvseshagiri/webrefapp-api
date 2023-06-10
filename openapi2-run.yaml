@@ -1,0 +1,127 @@
+# openapi2-run.yaml
+swagger: '2.0'
+info:
+  title: WebRefAPI -  A Web References API
+  description: Web References Management API on API Gateway with a Cloud Run backend
+  version: 1.0.0
+schemes:
+- https
+produces:
+- application/json
+x-google-backend:
+  address: https://webrefapp-api-vax7424gsq-uc.a.run.app
+paths:
+  /api/bookmarks/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: ID of the web reference.
+      summary: WebReferences
+      operationId: getWebReference
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            $ref: '#/definitions/WebReference'
+        '404':
+          description: Error Object with message
+
+    delete:
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: ID of the web reference.
+      summary: WebReferences
+      operationId: deleteWebReference
+      responses:
+        '200':
+          description: A successful response
+    put:
+     
+      summary: Update WebReference
+      description: Update WebReference
+      operationId: updateWebReference
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: id
+        type: string
+        required: true
+        description: ID of the web reference.
+      - in: "body"
+        name: "body"
+        schema:
+            $ref: "#/definitions/WebReference"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/WebReference'
+
+  /api/bookmarks:
+    post:
+      summary: Creates new WebReference
+      description: Creates new WebReference
+      operationId: createWebReference
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+            $ref: "#/definitions/WebReference"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/CreateResponse'
+    get:
+      summary:  Get All WebReferences
+      operationId: getAllWebReferences
+      produces:
+      - "application/json"
+      responses:
+        '200':
+          description: Sucessful Operation
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/WebReference"
+definitions:
+    WebReference:
+      type: object
+      properties:
+          title:
+            type: string
+          refUrl:
+            type: string
+            format: url
+          description:
+            type: string
+          keywords:
+            type: array
+            items:
+              type: string
+      required:
+        - title
+        - refUrl
+    ErrorMessage:
+      type: object
+      properties:
+        message:
+          type: string
+    CreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
