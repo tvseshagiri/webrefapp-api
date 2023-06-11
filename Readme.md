@@ -20,3 +20,19 @@
     #unset env. variables
     $(gcloud beta emulators datastore env-unset)
     ```
+
+* Create a new API Config 
+
+    ```sh
+
+        #Create new config
+        gcloud api-gateway api-configs create <New Config Name --api=<API ID> --openapi-spec=openapi2-run.yaml --project=<Project ID> --backend-auth-service-account=<Service Account>
+
+        #update gateway with new config
+        gcloud api-gateway gateways 
+        update <gateway ID> --api=<api ID> --api-config=<api config ID> --location=<location>
+
+        #Delete Old api config
+        
+        gcloud api-gateway api-configs delete <configID --api=<api ID> --project=<project ID>
+    ```

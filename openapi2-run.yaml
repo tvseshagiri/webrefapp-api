@@ -10,6 +10,8 @@ produces:
 - application/json
 x-google-backend:
   address: https://webrefapp-api-vax7424gsq-uc.a.run.app
+security:
+  - google_id_token: [] 
 paths:
   /api/bookmarks/{id}:
     get:
@@ -125,3 +127,11 @@ definitions:
       properties:
         id:
           type: string
+          
+securityDefinitions:
+  google_id_token:
+    authorizationUrl: ""
+    flow: "implicit"
+    type: "oauth2"
+    x-google-issuer: "https://accounts.google.com"
+    x-google-jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
